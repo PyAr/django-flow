@@ -1,8 +1,8 @@
 <h2>Create Algo</h2>
-{% for form in forms %}
-    <form method="post">
+{% for form_info in forms %}
+    <form action="{{ form_info.url }}" method="post">
       {% csrf_token %}
-      {{ form.as_p }}
+      {{ form_info.form.as_p }}
       <button type="submit">Dale</button>
     </form>
 {% endfor %}

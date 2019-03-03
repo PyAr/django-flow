@@ -19,7 +19,7 @@ from django.db.models import (
 ORGZER = 'organizer'
 ADMIN = 'admin'
 
-Step = namedtuple('Step', "current_state role next_state fields")
+Step = namedtuple('Step', "index current_state role next_state fields")
 
 
 class Profile(Model):
@@ -86,12 +86,19 @@ class Invoice(Model):
 class FSMModel(Model):
 
     @classmethod
+    def get_step_by_index(cls, index):
+        step = cls.fsm[index]
+        return Step(
+            index=index, current_state=step[0], role=step[1], next_state=step[2], fields=step[3])
+
+    @classmethod
     def get_steps(cls, state, role):
         steps = []
-        for step in cls.fsm:
+        for index, step in enumerate(cls.fsm):
             if step[0] == state and step[1] == role:
                 steps.append(Step(
-                    current_state=step[0], role=step[1], next_state=step[2], fields=step[3]))
+                    index=index, current_state=step[0],
+                    role=step[1], next_state=step[2], fields=step[3]))
         return steps
 
     @classmethod

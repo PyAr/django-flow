@@ -23,5 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('flow/create/<fsmmodel>', core.views.CreateFSMModel.as_view(), name='create_flow'),
     path('flow/create/<fsmmodel>/<pk>', core.views.CreateFSMModel.as_view(), name='update_flow'),
+    path('flow/create/<fsmmodel>/<step_index>/<pk>',
+         core.views.CreateFSMModel.as_view(), name='post_flow'),
     path('', core.views.HomePage.as_view(), name='home'),
 ]

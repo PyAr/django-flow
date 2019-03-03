@@ -2,11 +2,11 @@
 <h3>Current instance stuff</h3>
 {{ instance_form.as_p }}
 
-{% for form in forms %}
+{% for form_info in forms %}
     <h3>Option to do something</h3>
     <form method="post">
       {% csrf_token %}
-      {{ form.as_p }}
+      {{ form_info.form.as_p }}
       <button type="submit">Dale</button>
     </form>
 {% endfor %}
