@@ -1,0 +1,13 @@
+<h2>Create stuff</h2>
+<ul>
+{% for option in create %}
+<li><a href="{{ option.url }}">{{ option.text }}</a></li>
+{% endfor %}
+</ul>
+
+<h2>Open zaraza to work on</h2>
+<ul>
+{% for option in open %}
+<li><a href="{{ option.url }}">{{ option.text }}</a></li>
+{% endfor %}
+</ul>
